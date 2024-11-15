@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation & Delivery Services</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f4f4f4;
+    }
+    
+    .main-header {
+        background: linear-gradient(to right, #0066cc, #00ccff);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+    
+    nav ul li {
+        margin: 0 15px;
+    }
+    
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+        color: #ffcc00;
+    }
+    
+    .page-section {
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 800px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-section h2 {
+        color: #0066cc;
+        margin-bottom: 20px;
+    }
+    
+    form label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+    
+    form input, form select, form button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    
+    form button {
+        background-color: #0066cc;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    form button:hover {
+        background-color: #004d99;
+    }
+    
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 20px;
+    }
+    
+    footer p {
+        margin: 0;
+    }
+    
+    #driver-dashboard, #user-dashboard {
+        background-color: #e6f7ff;
+        padding: 15px;
+        border: 1px solid #99d6ff;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    
+    #driver-dashboard ul, #user-dashboard ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    #driver-dashboard ul li, #user-dashboard ul li {
+        background-color: #cceeff;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .page-section h2::before {
+        content: '🚗 ';
+    }
+    
+    .page-section#user-page h2::before {
+        content: '📦 ';
+    }
+    
+    .page-section#contact h2::before {
+        content: '✉️ ';
+    }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <h1>🚚 Transport & Delivery Services</h1>
+        <nav>
+            <ul>
+                <li><a href="#driver-page">Driver Page</a></li>
+                <li><a href="#user-page">User Page</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="driver-page" class="page-section">
+            <h2>Driver Page</h2>
+            <form id="driver-form">
+                <label for="driver-name">Full Name:</label>
+                <input type="text" id="driver-name" name="driver-name" required>
+                <label for="driver-license">License Number:</label>
+                <input type="text" id="driver-license" name="driver-license" required>
+                <label for="vehicle-info">Vehicle Info:</label>
+                <input type="text" id="vehicle-info" name="vehicle-info" required>
+                <button type="submit">Register</button>
+            </form>
+            <div id="driver-dashboard">
+                <h3>Available Orders</h3>
+                <ul id="driver-orders-list">
+                </ul>
+            </div>
+        </section>
+
+        <section id="user-page" class="page-section">
+            <h2>User Page</h2>
+            <form id="user-form">
+                <label for="service-type">Service Type:</label>
+                <select id="service-type" name="service-type" required>
+                    <option value="transport">Transport</option>
+                    <option value="delivery">Delivery</option>
+                </select>
+                <label for="pickup-location">Pickup Location:</label>
+                <input type="text" id="pickup-location" name="pickup-location" required>
+                <label for="dropoff-location">Dropoff Location:</label>
+                <input type="text" id="dropoff-location" name="dropoff-location" required>
+                <button type="submit">Submit Request</button>
+            </form>
+            <div id="user-dashboard">
+                <h3>Your Requests</h3>
+                <ul id="user-requests-list">
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <h2>Contact Us</h2>
+            <p>If you need help, please contact us at support@example.com or call +123 456 7890.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Transport & Delivery Services</p>
+    </footer>
+
+    <script>
+    // Add functionality for the form submission and dynamic data management
+    const driverForm = document.getElementById('driver-form');
+    const userForm = document.getElementById('user-form');
+    
+    const driverOrdersList = document.getElementById('driver-orders-list');
+    const userRequestsList = document.getElementById('user-requests-list');
+    
+    driverForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const driverName = document.getElementById('driver-name').value;
+        const license = document.getElementById('driver-license').value;
+        const vehicle = document.getElementById('vehicle-info').value;
+        const order = document.createElement('li');
+        order.textContent = `${driverName} - ${license} - ${vehicle}`;
+        driverOrdersList.appendChild(order);
+        driverForm.reset();
+    });
+    
+    userForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const serviceType = document.getElementById('service-type').value;
+        const pickupLocation = document.getElementById('pickup-location').value;
+        const dropoffLocation = document.getElementById('dropoff-location').value;
+        const request = document.createElement('li');
+        request.textContent = `${serviceType} from ${pickupLocation} to ${dropoffLocation}`;
+        userRequestsList.appendChild(request);
+        userForm.reset();
+    });
+    </script>
+</body>
+</html>
